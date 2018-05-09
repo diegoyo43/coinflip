@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CoinFlip</title>
+    </head>
+    <body>
+
+        <input type="number" id="number" value="1" min="1" max="1000000">
+        <button onclick="clickRandom()">Get Random Number</button>
+
+        <label id="random"></label>
+
+        <script>
+            function flip() {
+                var data = Math.random();
+                return data >= 0.5;
+            }
+
+            function randomNumber(n){
+                var numBin = 1;
+                var sum = 0;
+                var ret = "";
+
+                if(n > 0 && n < 1000001){
+
+                    do{
+                        numBin *= 2;
+                        sum += numBin;
+                        ret += ('' + (flip()*1));
+                    }
+                    while(sum <= n);
+
+                    return parseInt(ret,2);
+                }
+
+                throw "Number must be a value between 1 and 1000000";
+            }
+
+            function clickRandom(){
+                var num = document.getElementById('number').value;
+
+                try{
+                    document.getElementById('random').innerHTML = randomNumber(num);
+                }catch(e){
+                    document.getElementById('random').innerHTML = e;
+                }
+
+            }
+
+
+        </script>
+    </body>
+</html>
